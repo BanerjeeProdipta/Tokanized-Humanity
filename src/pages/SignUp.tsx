@@ -1,9 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import InputField from '../components/ui/form-fields/InputField';
-import { getRole } from '../utils';
 
 interface ISignUp{
   name:string,
@@ -11,6 +9,7 @@ interface ISignUp{
   address:string,
   dob:Date,
   contact:string,
+  profession:string,
   gender:string,
   profilePicture:File|undefined,
   passportImage:File|undefined,
@@ -20,20 +19,21 @@ interface ISignUp{
 
 const validationSchema = yup.object().shape({
   name: yup.string().required('Name is required'),
-  // email: yup.string().email('Invalid email').required('Email is required'),
-  // address: yup.string().required('Address is required'),
-  // dob: yup.date().required('Date of birth is required').typeError('Date of birth is required'),
-  // contact: yup.string().required('Contact Number is required'),
-  // gender: yup.string().required('Gender is required'),
-  // profilePicture: yup.mixed().required('Profile picture is required'),
-  // passportImage: yup.mixed().required('Passport image is required'),
-  // nIDImage: yup.mixed().required('NID image is required'),
-  // drivingLicenseImage: yup.mixed().required('Driving license image is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
+  address: yup.string().required('Address is required'),
+  dob: yup.date().required('Date of birth is required').typeError('Date of birth is required'),
+  contact: yup.string().required('Contact Number is required'),
+  profession: yup.string().required('Profession is required'),
+  gender: yup.string().required('Gender is required'),
+  profilePicture: yup.mixed().required('Profile picture is required'),
+  passportImage: yup.mixed().required('Passport image is required'),
+  nIDImage: yup.mixed().required('NID image is required'),
+  drivingLicenseImage: yup.mixed().required('Driving license image is required'),
 
 });
 
 function SignUp() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const {
     register,
@@ -49,16 +49,13 @@ function SignUp() {
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
-
     localStorage.setItem('user', JSON.stringify(data));
-    getRole();
-    console.log(getRole());
-    navigate('/');
+    // navigate('/');
   });
 
   return (
     <div className="w-full max-w-4xl">
-      <h2 className="text-2xl font-bold">Create Campaign</h2>
+      <h2 className="text-2xl font-bold">Apply for Verification</h2>
       <form onSubmit={onSubmit} className="grid grid-cols-2 gap-6 pt-6">
         <InputField
           type="text"
@@ -98,7 +95,16 @@ function SignUp() {
       }
         />
 
-        <div>
+        <InputField
+          type="text"
+          label="Profession"
+          {...register('profession')}
+          errorMessage={
+        errors.profession && errors.profession.message
+      }
+        />
+
+        <div className="max-w-md col-span-2">
           <p className={`font-medium mb-3 ${errors.gender ? 'text-red-500' : 'text-gray-500'}`}>
             Gender
           </p>
@@ -435,7 +441,7 @@ function SignUp() {
               isSubmitting && ' opacity-50 cursor-not-allowed'}`}
             disabled={isSubmitting}
           >
-            Create Campaign
+            Submit
             {isSubmitting && <span className="spinner" />}
           </button>
         </div>

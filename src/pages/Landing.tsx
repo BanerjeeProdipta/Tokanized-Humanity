@@ -1,4 +1,3 @@
-import 'react-quill/dist/quill.snow.css'; // ES6
 import HomeFeed from '../components/ui/landing/HomeFeed';
 import SliderComponent from '../components/ui/landing/Slider';
 

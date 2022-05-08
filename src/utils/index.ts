@@ -3,7 +3,7 @@ export const isAuthenticated = () => !!localStorage.getItem('user');
 export function getRole() {
   if (localStorage.getItem('user')) {
     const user = JSON.parse(localStorage.getItem('user')!);
-    return user.name === 'admin' ? 'dao' : 'user';
+    return user.email === 'admin@gmail.com' ? 'dao' : 'user';
   }
   return null;
 }

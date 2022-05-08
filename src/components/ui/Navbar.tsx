@@ -57,7 +57,7 @@ function Navbar() {
             }
             <button
               onClick={() => {
-                localStorage.clear();
+                localStorage.removeItem('user');
                 setIsLoggedIn(false);
                 navigate('/');
               }}
@@ -74,14 +74,14 @@ function Navbar() {
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
               type="button"
             >
-              Sign In
+              Sign Up
             </button>
             <button
-              onClick={() => navigate('/sign-up')}
+              onClick={() => navigate('/sign-in')}
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
               type="button"
             >
-              Connect Wallet
+              Sign In
             </button>
           </div>
         )}

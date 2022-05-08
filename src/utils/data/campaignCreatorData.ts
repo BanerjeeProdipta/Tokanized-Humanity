@@ -7,7 +7,7 @@ const campaignCreatorData = [
     dob: '17/09/1990',
     contact: '+8801729465928',
     gender: 'Female',
-    profilePicture: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=461&q=80',
+    profilePicture: 'https://c7.alamy.com/comp/A5CMWW/colorful-desia-kondh-tribal-people-are-a-distinctive-minority-group-A5CMWW.jpg',
     bio: 'I want to help people in need for a better cause.',
     status: 'Approved',
     createdAt: '11/02/2022',
