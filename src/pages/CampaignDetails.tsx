@@ -1,4 +1,6 @@
+/* eslint-disable no-nested-ternary */
 import { Menu } from '@headlessui/react';
+import { useState } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { BiSend } from 'react-icons/bi';
 import { Link, useParams } from 'react-router-dom';
@@ -8,6 +10,11 @@ import campaignData from '../utils/data/campaignData';
 
 function CampaignDetails() {
   const params = useParams();
+  const [donated, setDonated] = useState(false);
+
+  const handleDonation = () => {
+    setDonated(true);
+  };
 
   return (
     <div className="w-full">
@@ -62,14 +69,14 @@ function CampaignDetails() {
                             <Menu.Button
                               className="block w-full py-2 text-white transition rounded-full bg-primary hover:bg-secondary"
                             >
-                              Donate
-
+                              { donated ? 'Donated' : 'Donate'}
                             </Menu.Button>
                             <Menu.Items className="absolute rounded-xl left-3 w-96 bg-gray-50 dark:bg-gray-800">
                               <Menu.Item>
                                 {({ active }) => (
                                   <button
                                     type="button"
+                                    onClick={handleDonation}
                                     className={`${active && 'bg-blue-500'} block hover:bg-gray-500/10 p-2 w-full`}
                                   >
                                     Silver
@@ -80,6 +87,7 @@ function CampaignDetails() {
                                 {({ active }) => (
                                   <button
                                     type="button"
+                                    onClick={handleDonation}
                                     className={`${active && 'bg-blue-500'} block hover:bg-gray-500/10 p-2 w-full`}
                                   >
                                     Gold
@@ -90,6 +98,7 @@ function CampaignDetails() {
                                 {({ active }) => (
                                   <button
                                     type="button"
+                                    onClick={handleDonation}
                                     className={`${active && 'bg-blue-500'} block hover:bg-gray-500/10 p-2 w-full`}
                                   >
                                     Platinum

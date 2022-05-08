@@ -132,7 +132,6 @@ function Profile() {
                  {
                   campaignCreatorData.slice(0, 3).map((creator) => (
                     <div key={creator.id} className="mt-2 text-center">
-
                       <Link to={`/user/${creator.id}`}>
 
                         <img
