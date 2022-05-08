@@ -6,6 +6,7 @@ import CreateCampaign from '../pages/CreateCampaign';
 import Landing from '../pages/Landing';
 import MembershipApplications from '../pages/MembershipApplications';
 import Profile from '../pages/Profile';
+import SignIn from '../pages/SignIn';
 import SignUp from '../pages/SignUp';
 import { getRole } from '../utils';
 
@@ -18,6 +19,7 @@ function Routes() {
       { path: '/fund-request/:id', element: <CampaignDetails /> },
       { path: '/user/:id', element: <Profile /> },
       { path: '/sign-up', element: <SignUp /> },
+      { path: '/sign-in', element: <SignIn /> },
 
     ],
   };

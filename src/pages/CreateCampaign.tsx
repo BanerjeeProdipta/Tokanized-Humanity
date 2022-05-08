@@ -43,6 +43,7 @@ function CreateCampaign() {
     setBanner(undefined);
     if (event.target.files) {
       const file = event.target.files[0];
+      setValue('banner', file);
       setBanner(file);
     }
   };

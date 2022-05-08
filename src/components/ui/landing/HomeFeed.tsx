@@ -43,15 +43,15 @@ function HomeFeed() {
               </span>
             </div>
 
-            <div className="px-4 py-2 mt-2 rounded-xl">
+            <Link to={`/fund-request/${campaign.id}`} className="px-4 py-2 mt-2 rounded-xl">
               <div className="space-y-2">
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  {campaign.description}
                 </p>
                 <img
-                  src="https://images.unsplash.com/photo-1507427100689-2bf8574e32d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+                  src={campaign.banner}
                   alt=""
-                  className="max-w-xs overflow-y-auto rounded-lg lg:w-full h-96"
+                  className="max-w-xl rounded-lg lg:w-full"
                 />
               </div>
               {
@@ -72,7 +72,7 @@ function HomeFeed() {
                 ))
               }
 
-            </div>
+            </Link>
           </div>
 
         </div>
