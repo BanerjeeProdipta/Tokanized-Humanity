@@ -1,9 +1,9 @@
 export const isAuthenticated = () => !!localStorage.getItem('user');
 
 export function getRole() {
-  if (localStorage.getItem('user')) {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    return user.email === 'admin@gmail.com' ? 'dao' : 'user';
+  if (localStorage.getItem('user') !==null) {
+    // const user = JSON.parse(localStorage.getItem('user'));
+    // return user.email === 'admin@gmail.com' ? 'dao' : 'user';
   }
   return null;
 }
@@ -14,6 +14,14 @@ export function isOwner(id:number) {
     return true;
   }
   return false;
+}
+
+export function getValue(name:string) {
+  if (localStorage.getItem('user') && name) {
+    // const value = JSON.parse(localStorage.getItem('user')).name;
+    // return value
+  }
+  return null;
 }
 
 // all regex

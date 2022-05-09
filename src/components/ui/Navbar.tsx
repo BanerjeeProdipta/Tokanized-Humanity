@@ -1,7 +1,7 @@
 import { useContractKit } from '@celo-tools/use-contractkit';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getRole, isAuthenticated } from '../../utils';
+import { getRole, getValue, isAuthenticated } from '../../utils';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -14,10 +14,14 @@ function Navbar() {
   }, [isLoggedIn]);
   const { connect, address, destroy } = useContractKit();
 
-  const handleConnect = () => {
-    connect().catch((err:any) => console.log(err));
-    navigate('/sign-up');
+  const handleConnect = async () => {
+    try {
+      await connect();
+    } catch (e) {
+      console.log({ e });
+    }
   };
+
 
   return (
     <div
@@ -33,10 +37,12 @@ function Navbar() {
       </Link>
       <div className="flex items-center">
 
-        { address && localStorage.getItem('user') && localStorage.getItem('user')!.length > 1 ? (
+        {address && localStorage.getItem('user') ? (
           <div className="flex items-center space-x-2">
             <p>
-              { JSON.parse(localStorage.getItem('user')!).name}
+              {
+                getValue('name')
+              }
             </p>
 
             {
@@ -53,13 +59,13 @@ function Navbar() {
               )
                 : getRole() === 'user' && (
 
-                <button
-                  onClick={() => navigate('/create/campaign')}
-                  className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
-                  type="button"
-                >
-                  Create a Campaign
-                </button>
+                  <button
+                    onClick={() => navigate('/create/campaign')}
+                    className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
+                    type="button"
+                  >
+                    Create a Campaign
+                  </button>
                 )
             }
             <button
@@ -78,19 +84,17 @@ function Navbar() {
         ) : (
           <div className="flex items-center">
             <button
-              onClick={handleConnect()}
+              onClick={handleConnect}
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
               type="button"
             >
               Sign Up
             </button>
-            <button
-              onClick={() => navigate('/sign-in')}
+            <Link to="/sign-in"
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
-              type="button"
             >
               Sign In
-            </button>
+            </Link>
           </div>
         )}
 
