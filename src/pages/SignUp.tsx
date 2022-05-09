@@ -1,8 +1,8 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import InputField from '../components/ui/form-fields/InputField';
-
 interface ISignUp {
   name: string,
   email: string,
@@ -33,24 +33,28 @@ const validationSchema = yup.object().shape({
 });
 
 function SignUp() {
-  // const navigate = useNavigate();
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     setValue,
-    // watch,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<ISignUp>({
     resolver: yupResolver(validationSchema),
     mode: 'onBlur',
-
   });
+
+  const profilePicture = watch('profilePicture');
+  const passportImage = watch('passportImage');
+  const nIDImage = watch('nIDImage');
+  const drivingLicenseImage = watch('drivingLicenseImage');
+
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
-    localStorage.setItem('user', JSON.stringify(data));
-    // navigate('/');
+    localStorage.setItem('pendingMember', JSON.stringify(data));
+    navigate('/');
   });
 
   return (
@@ -170,7 +174,7 @@ function SignUp() {
             errors.gender && (<p className="text-xs text-red-500">{errors.gender.message}</p>)
           }
         </div>
-        {/* <div className="space-y-1">
+        <div className="space-y-1">
           <p className={`font-medium ${errors.profilePicture ? 'text-red-500' : 'text-gray-500'}`}>
             Profile Image
           </p>
@@ -178,15 +182,10 @@ function SignUp() {
             className="flex flex-wrap items-center"
           >
             {
-              watch('profilePicture') && (
+              profilePicture && (
                 <img
                   className="object-cover w-20 h-20 mr-4 border rounded-full"
-                  src={watch(
-                    'profilePicture',
-                  ) && URL.createObjectURL(
-                    watch('profilePicture')
-
-                  )}
+                  src={URL.createObjectURL(profilePicture)}
                   alt="user avatar"
                 />
               )
@@ -203,7 +202,6 @@ function SignUp() {
                   id="browse-picture-file-button"
                   type="file"
                   onChange={(e) => {
-                    // eslint-disable-next-line no-unused-expressions
                     e.target.files && setValue('profilePicture', e.target.files[0]);
                   }}
                 />
@@ -212,7 +210,7 @@ function SignUp() {
                 </div>
               </label>
               {
-                watch('profilePicture')
+                profilePicture
                 && (
                   <button
                     type="button"
@@ -245,13 +243,13 @@ function SignUp() {
             className="flex flex-wrap items-center"
           >
             {
-              watch('passportImage') && (
+              passportImage && (
                 <img
                   className="object-cover w-20 h-20 mr-4 border rounded-full"
                   src={watch(
                     'passportImage',
                   ) && URL.createObjectURL(
-                    watch('passportImage'),
+                    passportImage,
                   )}
                   alt="user avatar"
                 />
@@ -278,7 +276,7 @@ function SignUp() {
                 </div>
               </label>
               {
-                watch('passportImage')
+                passportImage
                 && (
                   <button
                     type="button"
@@ -311,13 +309,13 @@ function SignUp() {
             className="flex flex-wrap items-center"
           >
             {
-              watch('nIDImage') && (
+              nIDImage && (
                 <img
                   className="object-cover w-20 h-20 mr-4 border rounded-full"
                   src={watch(
                     'nIDImage',
                   ) && URL.createObjectURL(
-                    watch('nIDImage'),
+                    nIDImage,
                   )}
                   alt="user avatar"
                 />
@@ -335,7 +333,6 @@ function SignUp() {
                   id="browse-nid-file-button"
                   type="file"
                   onChange={(e) => {
-                    // eslint-disable-next-line no-unused-expressions
                     e.target.files && setValue('nIDImage', e.target.files[0]);
                   }}
                 />
@@ -344,7 +341,7 @@ function SignUp() {
                 </div>
               </label>
               {
-                watch('nIDImage')
+                nIDImage
                 && (
                   <button
                     type="button"
@@ -377,13 +374,13 @@ function SignUp() {
             className="flex flex-wrap items-center"
           >
             {
-              watch('drivingLicenseImage') && (
+              drivingLicenseImage && (
                 <img
                   className="object-cover w-20 h-20 mr-4 border rounded-full"
                   src={watch(
                     'drivingLicenseImage',
                   ) && URL.createObjectURL(
-                    watch('drivingLicenseImage'),
+                    drivingLicenseImage,
                   )}
                   alt="user avatar"
                 />
@@ -410,7 +407,7 @@ function SignUp() {
                 </div>
               </label>
               {
-                watch('drivingLicenseImage')
+                drivingLicenseImage
                 && (
                   <button
                     type="button"
@@ -433,7 +430,8 @@ function SignUp() {
           {
             errors.drivingLicenseImage && (<p className="text-xs text-red-500">{errors.drivingLicenseImage.message}</p>)
           }
-        </div> */}
+        </div>
+
         <div />
         <div className="flex justify-end">
           <button

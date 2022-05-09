@@ -3,11 +3,10 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import InputField from '../components/ui/form-fields/InputField';
-import { getRole } from '../utils';
 
-interface ISignUp{
- email: string;
- password: string;
+interface ISignUp {
+  email: string;
+  password: string;
 }
 
 const validationSchema = yup.object().shape({
@@ -31,7 +30,6 @@ function SignIn() {
 
   const onSubmit = handleSubmit(async (data) => {
     localStorage.setItem('user', JSON.stringify(data));
-    getRole();
     navigate('/');
   });
 
@@ -44,8 +42,7 @@ function SignIn() {
         <div className="flex justify-end">
           <button
             type="submit"
-            className={`px-4 py-1 text-white transition duration-500 rounded-full bg-primary hover:bg-secondary ${
-              isSubmitting && ' opacity-50 cursor-not-allowed'}`}
+            className={`px-4 py-1 text-white transition duration-500 rounded-full bg-primary hover:bg-secondary ${isSubmitting && ' opacity-50 cursor-not-allowed'}`}
             disabled={isSubmitting}
           >
             Submit

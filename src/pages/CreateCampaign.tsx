@@ -130,7 +130,7 @@ function CreateCampaign() {
             <label htmlFor="browse-banner-file-button">
               {banner ? (
                 <div className="flex items-center justify-center py-8">
-                  <img src={URL.createObjectURL(banner)} alt="banner" className="w-12 h-12" />
+                  <img src={URL.createObjectURL(banner)} alt="banner" className="w-full h-96" />
                 </div>
               ) : (
                 <div className="flex items-center justify-start p-6 space-x-6 cursor-pointer">

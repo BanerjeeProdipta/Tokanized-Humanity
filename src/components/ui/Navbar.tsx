@@ -1,7 +1,7 @@
 import { useContractKit } from '@celo-tools/use-contractkit';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getRole, getValue, isAuthenticated } from '../../utils';
+import { getRole, isAuthenticated } from '../../utils';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -40,9 +40,7 @@ function Navbar() {
         {address && localStorage.getItem('user') ? (
           <div className="flex items-center space-x-2">
             <p>
-              {
-                getValue('name')
-              }
+              {JSON.parse(localStorage.getItem('user') || '{ }').email}
             </p>
 
             {
@@ -83,18 +81,19 @@ function Navbar() {
           </div>
         ) : (
           <div className="flex items-center">
-            <button
-              onClick={handleConnect}
+            <Link
+              to='/sign-up'
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
               type="button"
             >
               Sign Up
-            </button>
-            <Link to="/sign-in"
+            </Link>
+            <button
+              onClick={handleConnect}
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
             >
-              Sign In
-            </Link>
+              Connect Wallet
+            </button>
           </div>
         )}
 
