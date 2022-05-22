@@ -1,7 +1,7 @@
 import { useContractKit } from '@celo-tools/use-contractkit';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getRole, isAuthenticated } from '../../utils';
+import { getRole, isAuthenticated } from '../../../utils';
 
 function Navbar() {
   const navigate = useNavigate();
