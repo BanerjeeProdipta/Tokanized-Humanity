@@ -37,11 +37,10 @@ function Navbar() {
       </Link>
       <div className="flex items-center">
 
-        {address && localStorage.getItem('user') ? (
+        {address ? (
           <div className="flex items-center space-x-2">
-            <p>
-              {JSON.parse(localStorage.getItem('user') || '{ }').email}
-            </p>
+
+            <p className='truncate truncate-5'>{address}</p>
 
             {
               getRole() === 'dao' ? (
@@ -76,7 +75,7 @@ function Navbar() {
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
               type="button"
             >
-              Logout
+              Disconnect Wallet
             </button>
           </div>
         ) : (
@@ -88,6 +87,7 @@ function Navbar() {
             >
               Sign Up
             </Link>
+
             <button
               onClick={handleConnect}
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
