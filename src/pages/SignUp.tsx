@@ -1,20 +1,20 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
 import InputField from '../components/ui/form-fields/InputField';
-
-interface ISignUp{
-  name:string,
-  email:string,
-  address:string,
-  dob:Date,
-  contact:string,
-  profession:string,
-  gender:string,
-  profilePicture:File|undefined,
-  passportImage:File|undefined,
-  nIDImage:File|undefined,
-  drivingLicenseImage:File|undefined,
+interface ISignUp {
+  name: string,
+  email: string,
+  address: string,
+  dob: Date,
+  contact: string,
+  profession: string,
+  gender: string,
+  profilePicture: File | undefined,
+  passportImage: File | undefined,
+  nIDImage: File | undefined,
+  drivingLicenseImage: File | undefined,
 }
 
 const validationSchema = yup.object().shape({
@@ -33,8 +33,7 @@ const validationSchema = yup.object().shape({
 });
 
 function SignUp() {
-  // const navigate = useNavigate();
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -44,13 +43,18 @@ function SignUp() {
   } = useForm<ISignUp>({
     resolver: yupResolver(validationSchema),
     mode: 'onBlur',
-
   });
+
+  const profilePicture = watch('profilePicture');
+  const passportImage = watch('passportImage');
+  const nIDImage = watch('nIDImage');
+  const drivingLicenseImage = watch('drivingLicenseImage');
+
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
-    localStorage.setItem('user', JSON.stringify(data));
-    // navigate('/');
+    localStorage.setItem('pendingMember', JSON.stringify(data));
+    navigate('/');
   });
 
   return (
@@ -62,8 +66,8 @@ function SignUp() {
           label=" Name"
           {...register('name')}
           errorMessage={
-        errors.name && errors.name.message
-      }
+            errors.name && errors.name.message
+          }
         />
 
         <InputField type="email" label="Email" {...register('email')} errorMessage={errors.email && errors.email.message} />
@@ -73,8 +77,8 @@ function SignUp() {
           label="Address"
           {...register('address')}
           errorMessage={
-        errors.address && errors.address.message
-      }
+            errors.address && errors.address.message
+          }
         />
 
         <InputField
@@ -82,8 +86,8 @@ function SignUp() {
           label="Date of Birth"
           {...register('dob')}
           errorMessage={
-        errors.dob && errors.dob.message
-      }
+            errors.dob && errors.dob.message
+          }
         />
 
         <InputField
@@ -91,8 +95,8 @@ function SignUp() {
           label="Contact Number"
           {...register('contact')}
           errorMessage={
-        errors.contact && errors.contact.message
-      }
+            errors.contact && errors.contact.message
+          }
         />
 
         <InputField
@@ -100,8 +104,8 @@ function SignUp() {
           label="Profession"
           {...register('profession')}
           errorMessage={
-        errors.profession && errors.profession.message
-      }
+            errors.profession && errors.profession.message
+          }
         />
 
         <div className="max-w-md col-span-2">
@@ -167,8 +171,8 @@ function SignUp() {
             </div>
           </div>
           {
-  errors.gender && (<p className="text-xs text-red-500">{errors.gender.message}</p>)
-}
+            errors.gender && (<p className="text-xs text-red-500">{errors.gender.message}</p>)
+          }
         </div>
         <div className="space-y-1">
           <p className={`font-medium ${errors.profilePicture ? 'text-red-500' : 'text-gray-500'}`}>
@@ -178,18 +182,14 @@ function SignUp() {
             className="flex flex-wrap items-center"
           >
             {
-               watch('profilePicture') && (
-               <img
-                 className="object-cover w-20 h-20 mr-4 border rounded-full"
-                 src={watch(
-                   'profilePicture',
-                 ) && URL.createObjectURL(
-                watch('profilePicture')!,
-                 )}
-                 alt="user avatar"
-               />
-               )
-}
+              profilePicture && (
+                <img
+                  className="object-cover w-20 h-20 mr-4 border rounded-full"
+                  src={URL.createObjectURL(profilePicture)}
+                  alt="user avatar"
+                />
+              )
+            }
 
             <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
               <label
@@ -202,8 +202,7 @@ function SignUp() {
                   id="browse-picture-file-button"
                   type="file"
                   onChange={(e) => {
-                    // eslint-disable-next-line no-unused-expressions
-                    e.target.files && setValue('profilePicture', e.target.files[0]!);
+                    e.target.files && setValue('profilePicture', e.target.files[0]);
                   }}
                 />
                 <div className="px-3 py-2 font-medium text-center text-white rounded-lg cursor-pointer bg-primary">
@@ -211,23 +210,23 @@ function SignUp() {
                 </div>
               </label>
               {
-               watch('profilePicture')
-              && (
-              <button
-                type="button"
-                onClick={
-                () => setValue(
-                  'profilePicture',
-                  undefined,
-                )
+                profilePicture
+                && (
+                  <button
+                    type="button"
+                    onClick={
+                      () => setValue(
+                        'profilePicture',
+                        undefined,
+                      )
 
+                    }
+                    className="px-3 py-2 font-medium border rounded-lg border-primary"
+                  >
+                    Delete
+                  </button>
+                )
               }
-                className="px-3 py-2 font-medium border rounded-lg border-primary"
-              >
-                Delete
-              </button>
-              )
-}
             </div>
 
           </div>
@@ -244,18 +243,18 @@ function SignUp() {
             className="flex flex-wrap items-center"
           >
             {
-               watch('passportImage') && (
-               <img
-                 className="object-cover w-20 h-20 mr-4 border rounded-full"
-                 src={watch(
-                   'passportImage',
-                 ) && URL.createObjectURL(
-                watch('passportImage')!,
-                 )}
-                 alt="user avatar"
-               />
-               )
-}
+              passportImage && (
+                <img
+                  className="object-cover w-20 h-20 mr-4 border rounded-full"
+                  src={watch(
+                    'passportImage',
+                  ) && URL.createObjectURL(
+                    passportImage,
+                  )}
+                  alt="user avatar"
+                />
+              )
+            }
 
             <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
               <label
@@ -269,7 +268,7 @@ function SignUp() {
                   type="file"
                   onChange={(e) => {
                     // eslint-disable-next-line no-unused-expressions
-                    e.target.files && setValue('passportImage', e.target.files[0]!);
+                    e.target.files && setValue('passportImage', e.target.files[0]);
                   }}
                 />
                 <div className="px-3 py-2 font-medium text-center text-white rounded-lg cursor-pointer bg-primary">
@@ -277,23 +276,23 @@ function SignUp() {
                 </div>
               </label>
               {
-               watch('passportImage')
-              && (
-              <button
-                type="button"
-                onClick={
-                () => setValue(
-                  'passportImage',
-                  undefined,
-                )
+                passportImage
+                && (
+                  <button
+                    type="button"
+                    onClick={
+                      () => setValue(
+                        'passportImage',
+                        undefined,
+                      )
 
+                    }
+                    className="px-3 py-2 font-medium border rounded-lg border-primary"
+                  >
+                    Delete
+                  </button>
+                )
               }
-                className="px-3 py-2 font-medium border rounded-lg border-primary"
-              >
-                Delete
-              </button>
-              )
-}
             </div>
 
           </div>
@@ -310,18 +309,18 @@ function SignUp() {
             className="flex flex-wrap items-center"
           >
             {
-               watch('nIDImage') && (
-               <img
-                 className="object-cover w-20 h-20 mr-4 border rounded-full"
-                 src={watch(
-                   'nIDImage',
-                 ) && URL.createObjectURL(
-                watch('nIDImage')!,
-                 )}
-                 alt="user avatar"
-               />
-               )
-}
+              nIDImage && (
+                <img
+                  className="object-cover w-20 h-20 mr-4 border rounded-full"
+                  src={watch(
+                    'nIDImage',
+                  ) && URL.createObjectURL(
+                    nIDImage,
+                  )}
+                  alt="user avatar"
+                />
+              )
+            }
 
             <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
               <label
@@ -334,8 +333,7 @@ function SignUp() {
                   id="browse-nid-file-button"
                   type="file"
                   onChange={(e) => {
-                    // eslint-disable-next-line no-unused-expressions
-                    e.target.files && setValue('nIDImage', e.target.files[0]!);
+                    e.target.files && setValue('nIDImage', e.target.files[0]);
                   }}
                 />
                 <div className="px-3 py-2 font-medium text-center text-white rounded-lg cursor-pointer bg-primary">
@@ -343,23 +341,23 @@ function SignUp() {
                 </div>
               </label>
               {
-               watch('nIDImage')
-              && (
-              <button
-                type="button"
-                onClick={
-                () => setValue(
-                  'nIDImage',
-                  undefined,
-                )
+                nIDImage
+                && (
+                  <button
+                    type="button"
+                    onClick={
+                      () => setValue(
+                        'nIDImage',
+                        undefined,
+                      )
 
+                    }
+                    className="px-3 py-2 font-medium border rounded-lg border-primary"
+                  >
+                    Delete
+                  </button>
+                )
               }
-                className="px-3 py-2 font-medium border rounded-lg border-primary"
-              >
-                Delete
-              </button>
-              )
-}
             </div>
 
           </div>
@@ -376,18 +374,18 @@ function SignUp() {
             className="flex flex-wrap items-center"
           >
             {
-               watch('drivingLicenseImage') && (
-               <img
-                 className="object-cover w-20 h-20 mr-4 border rounded-full"
-                 src={watch(
-                   'drivingLicenseImage',
-                 ) && URL.createObjectURL(
-                watch('drivingLicenseImage')!,
-                 )}
-                 alt="user avatar"
-               />
-               )
-}
+              drivingLicenseImage && (
+                <img
+                  className="object-cover w-20 h-20 mr-4 border rounded-full"
+                  src={watch(
+                    'drivingLicenseImage',
+                  ) && URL.createObjectURL(
+                    drivingLicenseImage,
+                  )}
+                  alt="user avatar"
+                />
+              )
+            }
 
             <div className="flex flex-col space-y-2 sm:flex-row sm:space-y-0 sm:space-x-2">
               <label
@@ -401,7 +399,7 @@ function SignUp() {
                   type="file"
                   onChange={(e) => {
                     // eslint-disable-next-line no-unused-expressions
-                    e.target.files && setValue('drivingLicenseImage', e.target.files[0]!);
+                    e.target.files && setValue('drivingLicenseImage', e.target.files[0]);
                   }}
                 />
                 <div className="px-3 py-2 font-medium text-center text-white rounded-lg cursor-pointer bg-primary">
@@ -409,23 +407,23 @@ function SignUp() {
                 </div>
               </label>
               {
-               watch('drivingLicenseImage')
-              && (
-              <button
-                type="button"
-                onClick={
-                () => setValue(
-                  'drivingLicenseImage',
-                  undefined,
-                )
+                drivingLicenseImage
+                && (
+                  <button
+                    type="button"
+                    onClick={
+                      () => setValue(
+                        'drivingLicenseImage',
+                        undefined,
+                      )
 
+                    }
+                    className="px-3 py-2 font-medium border rounded-lg border-primary"
+                  >
+                    Delete
+                  </button>
+                )
               }
-                className="px-3 py-2 font-medium border rounded-lg border-primary"
-              >
-                Delete
-              </button>
-              )
-}
             </div>
 
           </div>
@@ -433,12 +431,12 @@ function SignUp() {
             errors.drivingLicenseImage && (<p className="text-xs text-red-500">{errors.drivingLicenseImage.message}</p>)
           }
         </div>
+
         <div />
         <div className="flex justify-end">
           <button
             type="submit"
-            className={`px-4 py-1 text-white transition duration-500 rounded-full bg-primary hover:bg-secondary ${
-              isSubmitting && ' opacity-50 cursor-not-allowed'}`}
+            className={`px-4 py-1 text-white transition duration-500 rounded-full bg-primary hover:bg-secondary ${isSubmitting && ' opacity-50 cursor-not-allowed'}`}
             disabled={isSubmitting}
           >
             Submit

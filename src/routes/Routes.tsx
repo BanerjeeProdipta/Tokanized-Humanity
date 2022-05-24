@@ -1,5 +1,5 @@
 import { Navigate, useRoutes } from 'react-router-dom';
-import Layout from '../components/ui/Layout';
+import Layout from '../components/ui/common/Layout';
 import ApplicationDetails from '../pages/ApplicationDetails';
 import CampaignDetails from '../pages/CampaignDetails';
 import CreateCampaign from '../pages/CreateCampaign';

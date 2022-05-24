@@ -7,7 +7,7 @@ import * as yup from 'yup';
 import InputField from '../components/ui/form-fields/InputField';
 import TextArea from '../components/ui/form-fields/TextArea';
 
- interface ICreateCampaign{
+interface ICreateCampaign {
   title: string;
   description: string;
   endDate: string;
@@ -62,8 +62,8 @@ function CreateCampaign() {
           label="Title"
           {...register('title')}
           errorMessage={
-        errors.title && errors.title.message
-      }
+            errors.title && errors.title.message
+          }
         />
 
         <TextArea
@@ -72,8 +72,8 @@ function CreateCampaign() {
           placeholder="Write a few lines about your campaign"
           {...register('description')}
           errorMessage={
-        errors.description && errors.description.message
-      }
+            errors.description && errors.description.message
+          }
         />
 
         <InputField
@@ -81,23 +81,21 @@ function CreateCampaign() {
           label="End Date"
           {...register('endDate')}
           errorMessage={
-        errors.endDate && errors.endDate.message
-      }
+            errors.endDate && errors.endDate.message
+          }
         />
         <div>
-          <p className={`font-medium  mb-1 ${
-            bannerError ? 'text-red-500' : 'text-gray-500'
-          }`}
+          <p className={`font-medium  mb-1 ${bannerError ? 'text-red-500' : 'text-gray-500'
+            }`}
           >
             Banner
 
           </p>
 
           <div
-            className={`border bg-gray-500/20 rounded-lg ${isHovering && 'border-2 border-dashed '} ${
-              errors.banner && errors.banner.message
-                ? 'border-red-500' : 'border-dashed'
-            } `}
+            className={`border bg-gray-500/20 rounded-lg ${isHovering && 'border-2 border-dashed '} ${errors.banner && errors.banner.message
+              ? 'border-red-500' : 'border-dashed'
+              } `}
             onDragEnter={() => {
               setIsHovering(true);
             }}
@@ -132,7 +130,7 @@ function CreateCampaign() {
             <label htmlFor="browse-banner-file-button">
               {banner ? (
                 <div className="flex items-center justify-center py-8">
-                  <img src={URL.createObjectURL(banner)} alt="banner" className="w-12 h-12" />
+                  <img src={URL.createObjectURL(banner)} alt="banner" className="w-full h-96" />
                 </div>
               ) : (
                 <div className="flex items-center justify-start p-6 space-x-6 cursor-pointer">
@@ -151,8 +149,7 @@ function CreateCampaign() {
         <div className="flex justify-end">
           <button
             type="submit"
-            className={`px-4 py-1 text-white transition duration-500 rounded-full bg-primary hover:bg-secondary ${
-              isSubmitting && ' opacity-50 cursor-not-allowed'}`}
+            className={`px-4 py-1 text-white transition duration-500 rounded-full bg-primary hover:bg-secondary ${isSubmitting && ' opacity-50 cursor-not-allowed'}`}
             disabled={isSubmitting}
           >
             Create Campaign

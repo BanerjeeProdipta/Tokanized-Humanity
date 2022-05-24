@@ -1,6 +1,7 @@
+import { useContractKit } from '@celo-tools/use-contractkit';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getRole, isAuthenticated } from '../../utils';
+import { getRole, isAuthenticated } from '../../../utils';
 
 function Navbar() {
   const navigate = useNavigate();
@@ -11,6 +12,16 @@ function Navbar() {
     setIsLoggedIn(isAuthenticated());
     getRole();
   }, [isLoggedIn]);
+  const { connect, address, destroy } = useContractKit();
+
+  const handleConnect = async () => {
+    try {
+      await connect();
+    } catch (e) {
+      console.log({ e });
+    }
+  };
+
 
   return (
     <div
@@ -26,11 +37,10 @@ function Navbar() {
       </Link>
       <div className="flex items-center">
 
-        { localStorage.getItem('user') && localStorage.getItem('user')!.length > 1 ? (
+        {address ? (
           <div className="flex items-center space-x-2">
-            <p>
-              { JSON.parse(localStorage.getItem('user')!).name}
-            </p>
+
+            <p className='truncate truncate-5'>{address}</p>
 
             {
               getRole() === 'dao' ? (
@@ -46,13 +56,13 @@ function Navbar() {
               )
                 : getRole() === 'user' && (
 
-                <button
-                  onClick={() => navigate('/create/campaign')}
-                  className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
-                  type="button"
-                >
-                  Create a Campaign
-                </button>
+                  <button
+                    onClick={() => navigate('/create/campaign')}
+                    className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
+                    type="button"
+                  >
+                    Create a Campaign
+                  </button>
                 )
             }
             <button
@@ -60,28 +70,29 @@ function Navbar() {
                 localStorage.removeItem('user');
                 setIsLoggedIn(false);
                 navigate('/');
+                destroy();
               }}
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
               type="button"
             >
-              Logout
+              Disconnect Wallet
             </button>
           </div>
         ) : (
           <div className="flex items-center">
-            <button
-              onClick={() => navigate('/sign-up')}
+            <Link
+              to='/sign-up'
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
               type="button"
             >
               Sign Up
-            </button>
+            </Link>
+
             <button
-              onClick={() => navigate('/sign-in')}
+              onClick={handleConnect}
               className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
-              type="button"
             >
-              Sign In
+              Connect Wallet
             </button>
           </div>
         )}

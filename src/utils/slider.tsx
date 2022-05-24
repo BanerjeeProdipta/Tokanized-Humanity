@@ -1,27 +1,29 @@
-function SampleNextArrow(props:any) {
+function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
   return (
     <button
       type="button"
-      className={`${className} bg-primary hover:bg-secondary transition  shrink-0 h-8 -mt-4 pt-0.5 duration-700 flex justify-center items-center w-8 rounded-full`}
+      className={`${className} bg-primary hover:bg-secondary transition pt-0.5 shrink-0 h-8 -mt-4 duration-700 flex justify-center items-center w-8 rounded-full`}
       style={{
         ...style,
         display: 'block',
+        background: '#06b6d4',
       }}
       onClick={onClick}
     />
   );
 }
 
-function SamplePrevArrow(props:any) {
+function SamplePrevArrow(props: any) {
   const { className, style, onClick } = props;
   return (
     <button
       type="button"
-      className={`${className} bg-primary hover:bg-secondary transition  shrink-0 h-8 -mt-4 pt-0.5 duration-700 flex justify-center items-center w-8 rounded-full z-100`}
+      className={`${className} bg-primary hover:bg-secondary transition pt-0.5 shrink-0 h-8 -mt-4 duration-700 flex justify-center items-center w-8 rounded-full z-100`}
       style={{
         ...style,
         display: 'block',
+        background: '#06b6d4',
         zIndex: 100,
       }}
       onClick={onClick}

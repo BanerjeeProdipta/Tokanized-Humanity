@@ -1,12 +1,13 @@
 /* eslint-disable react/jsx-no-constructed-context-values */
 import React, { createContext } from 'react';
 
-export const MainContext = createContext(
-  {
-    themeData: [
-    ] as any,
-  },
-);
+interface ITheme {
+
+}
+
+export const MainContext = createContext<ITheme>({
+  themeData: []
+});
 
 const getInitialTheme = () => {
   if (typeof window !== 'undefined' && window.localStorage) {
@@ -27,7 +28,7 @@ const getInitialTheme = () => {
 export function MainProvider({ children }: JSX.ElementChildrenAttribute) {
   const [theme, setTheme] = React.useState(getInitialTheme);
 
-  const rawSetTheme = (themeValue:string) => {
+  const rawSetTheme = (themeValue: string) => {
     const root = window.document.documentElement;
     const isDark = themeValue === 'dark';
 

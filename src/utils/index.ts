@@ -1,8 +1,8 @@
 export const isAuthenticated = () => !!localStorage.getItem('user');
 
 export function getRole() {
-  if (localStorage.getItem('user')) {
-    const user = JSON.parse(localStorage.getItem('user')!);
+  if (typeof localStorage.getItem('user') === 'string') {
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
     return user.email === 'admin@gmail.com' ? 'dao' : 'user';
   }
   return null;
@@ -15,6 +15,8 @@ export function isOwner(id:number) {
   }
   return false;
 }
+
+
 
 // all regex
 export const emailRegex = /^([a-z\d._-]+)@([a-z\d_-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/i;
