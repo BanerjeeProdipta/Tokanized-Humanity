@@ -40,7 +40,7 @@ function Navbar() {
         {address ? (
           <div className="flex items-center space-x-2">
 
-            <p className='truncate truncate-5'>{address}</p>
+            <p className='w-32 text-sm truncate'>{address}</p>
 
             {
               getRole() === 'dao' ? (
