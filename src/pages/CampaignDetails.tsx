@@ -1,23 +1,51 @@
 /* eslint-disable no-nested-ternary */
+import { useContractKit } from '@celo-tools/use-contractkit';
 import { Menu } from '@headlessui/react';
 import { useState } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { BiSend } from 'react-icons/bi';
 import { Link, useParams } from 'react-router-dom';
+import { Modal } from '../components/ui/common/Modal';
 import TextArea from '../components/ui/form-fields/TextArea';
+import donationABI from '../config/abis';
+import { donationContractAddress } from '../config/contracts';
 import { isOwner } from '../utils';
 import campaignData from '../utils/data/campaignData';
+
+
 
 function CampaignDetails() {
   const params = useParams();
   const [donated, setDonated] = useState(false);
+  const [customAmount, setCustomAmount] = useState(0);
+  const [show, setShow] = useState(false)
+  const { performActions, } = useContractKit();
 
-  const handleDonation = () => {
-    setDonated(true);
+  const handleDonation = async (donationAmount: string) => {
+    try {
+      await performActions(async (kit) => {
+        const donationContract = new kit.web3.eth.Contract(donationABI, donationContractAddress);
+        console.log(donationContract)
+        const sendConf = {
+          from: kit.defaultAccount,
+          gasLimit: '10000000',
+          gasPrice: kit.gasPrice,
+          value: kit.web3.utils.toWei(donationAmount, 'ether')
+        };
+
+        const fundit = await donationContract.methods.donate().send(sendConf)
+
+        console.log(fundit)
+      });
+      setDonated(true)
+    }
+    catch (e) {
+      console.log(e);
+    }
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full" >
       {
         params.id
           ? (
@@ -73,41 +101,54 @@ function CampaignDetails() {
                           </Menu.Button>
                           <Menu.Items className="absolute rounded-xl left-3 w-96 bg-gray-50 dark:bg-gray-800">
                             <Menu.Item>
-                              {({ active }) => (
+                              {(active: any) => (
                                 <button
                                   type="button"
-                                  onClick={handleDonation}
-                                  className={`${active && 'bg-blue-500'} block hover:bg-gray-500/10 p-2 w-full`}
+                                  onClick={() => handleDonation('10')}
+                                  className={`${active && 'bg-gray-800'} block hover:bg-gray-500/10 p-2 w-full`}
                                 >
-                                  Silver
+                                  Silver 10
                                 </button>
                               )}
                             </Menu.Item>
                             <Menu.Item>
-                              {({ active }) => (
+                              {(active: any) => (
                                 <button
                                   type="button"
-                                  onClick={handleDonation}
-                                  className={`${active && 'bg-blue-500'} block hover:bg-gray-500/10 p-2 w-full`}
+                                  onClick={() => handleDonation('20')}
+                                  className={`${active && 'bg-gray-800'} block hover:bg-gray-500/10 p-2 w-full`}
                                 >
-                                  Gold
+                                  Gold 20
                                 </button>
                               )}
                             </Menu.Item>
                             <Menu.Item>
-                              {({ active }) => (
+                              {(active: any) => (
                                 <button
                                   type="button"
-                                  onClick={handleDonation}
-                                  className={`${active && 'bg-blue-500'} block hover:bg-gray-500/10 p-2 w-full`}
+                                  onClick={() => handleDonation('30')}
+                                  className={`${active && 'bg-gray-800'} block hover:bg-gray-500/10 p-2 w-full`}
                                 >
-                                  Platinum
+                                  Platinum 30
+                                </button>
+                              )}
+                            </Menu.Item>
+                            <Menu.Item >
+                              {(active: any) => (
+
+                                <button
+                                  type="button"
+                                  onClick={() => setShow(true)}
+                                  className={`${active && 'bg-gray-800'} block hover:bg-gray-500/10 p-2 w-full`}
+                                >
+                                  Custom Amount
                                 </button>
                               )}
                             </Menu.Item>
                           </Menu.Items>
                         </Menu>
                       )}
+
                     <button
                       className="block w-full py-2 transition border rounded-full text-primary border-primary hover:bg-primary hover:text-white"
                       type="button"
@@ -119,7 +160,6 @@ function CampaignDetails() {
                   <div className="py-4 space-y-3">
                     {campaignData[parseInt(params.id) - 1].donations.map(
                       (donation, index) => (
-                        // eslint-disable-next-line react/no-array-index-key
                         <Link to={`/user/${donation.donator.id}`} key={index} className="flex items-center space-x-2">
                           <img
                             src={donation.donator.profilePicture}
@@ -146,7 +186,7 @@ function CampaignDetails() {
                             </div>
                           </div>
                         </Link>
-                      ),
+                      )
                     )}
 
                   </div>
@@ -248,9 +288,29 @@ function CampaignDetails() {
           ) : (
             <p>No Campaign Found</p>
           )
-
       }
-    </div>
+      <Modal
+        isOpen={show}
+        setIsOpen={() => setShow(false)}>
+        <div className='flex flex-col items-center px-2 pb-2 space-y-6 text-white w-72'>
+
+          <p className='text-lg'>Enter amount for donation</p>
+
+          <div className='flex items-center '>
+            <input
+              type='number' placeholder="Enter amount" onChange={(e: any) => setCustomAmount(e.target.value)}
+              className="w-full px-3 py-2 rounded-l-lg bg-gray-500/20 focus:outline-none" />
+            <button type="button"
+              onClick={() => {
+                handleDonation(customAmount.toString());
+                setShow(false);
+              }}
+              className="px-4 py-2 rounded-r-lg bg-gray-500/20 hover:bg-gray-500/30">Donate</button>
+          </div>
+
+        </div>
+      </Modal >
+    </div >
 
   );
 }

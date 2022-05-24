@@ -1,4 +1,4 @@
-[
+const donationABI:any = [
   {
     "inputs": [],
     "name": "donate",
@@ -20,3 +20,5 @@
     "type": "function"
   }
 ]
+
+export default donationABI;
