@@ -25,7 +25,7 @@ function Navbar() {
 
   return (
     <div
-      className="sticky top-0 z-50 flex justify-between py-2 lg:mx-0"
+      className="sticky top-0 z-50 flex justify-between py-2 bg-gray-900 lg:mx-0"
       style={{
         backdropFilter: 'blur(2px)',
       }}
@@ -40,7 +40,7 @@ function Navbar() {
         {address ? (
           <div className="flex items-center space-x-2">
 
-            <p className='w-32 text-sm truncate'>{address}</p>
+            <p className='text-sm'>{address.slice(0, 6)}...{address.slice(address.length - 4, address.length)}</p>
 
             {
               getRole() === 'dao' ? (

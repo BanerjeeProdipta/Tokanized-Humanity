@@ -7,8 +7,9 @@ import settings from '../../../utils/slider';
 
 function SliderComponent() {
   return (
-    <div className="pb-4">
-      <h2 className="pb-2 text-2xl font-bold">Fundraisers in your community</h2>
+    <section className="space-y-8 text-center ">
+      <span className="text-lg font-bold text-primary">Campaigns in your community</span>
+      <h2 className="text-3xl font-bold font-heading">Build and launch without problems</h2>
       <Slider {...settings} className="w-full">
         {
           campaignData.map((campaign) => (
@@ -21,7 +22,7 @@ function SliderComponent() {
                 to={`/fund-request/${campaign.id}`}
               >
                 <img
-                  className="object-fill w-full h-48 transition duration-700 group-hover:scale-105 rounded-xl"
+                  className="w-full h-48 transition duration-700 group-hover:scale-105 rounded-xl"
                   src={campaign.banner}
                   alt=""
                 />
@@ -49,7 +50,8 @@ function SliderComponent() {
           ))
         }
       </Slider>
-    </div>
+    </section>
+
   );
 }
 
