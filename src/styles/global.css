@@ -29,3 +29,9 @@ body {
 .slick-slider .slick-slide {
   padding: 0 5px;
 }
+
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}

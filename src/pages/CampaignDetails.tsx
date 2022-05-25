@@ -5,13 +5,15 @@ import { useState } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { BiSend } from 'react-icons/bi';
 import { Link, useParams } from 'react-router-dom';
+import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton } from 'react-share';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Modal } from '../components/ui/common/Modal';
 import TextArea from '../components/ui/form-fields/TextArea';
 import donationABI from '../config/abis';
 import { donationContractAddress } from '../config/contracts';
 import { isOwner } from '../utils';
 import campaignData from '../utils/data/campaignData';
-
 
 
 function CampaignDetails() {
@@ -38,6 +40,18 @@ function CampaignDetails() {
         console.log(fundit)
       });
       setDonated(true)
+      console.log(43)
+      toast.success(`Successfully donated ${donationAmount} celo!`, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      });
+      console.log(53)
+
     }
     catch (e) {
       console.log(e);
@@ -149,12 +163,24 @@ function CampaignDetails() {
                         </Menu>
                       )}
 
-                    <button
-                      className="block w-full py-2 transition border rounded-full text-primary border-primary hover:bg-primary hover:text-white"
-                      type="button"
-                    >
-                      Share
-                    </button>
+                    <div className="flex flex-wrap items-center space-x-4">
+                      <p className='font-bold'>
+                        Share
+                      </p>
+                      <FacebookShareButton
+                        url={'https://www.facebook.com/'}
+                        className="mr-2 space-x-2 transition filter grayscale hover:filter-none hover:scale-110"
+                      >
+                        <FacebookIcon size={32} round />
+                      </FacebookShareButton>
+                      <TwitterShareButton
+                        title={'test'}
+                        url={'https://twitter.com/'}
+                        className="mr-2 space-x-2 transition filter grayscale hover:filter-none hover:scale-110"
+                      >
+                        <TwitterIcon size={32} round />
+                      </TwitterShareButton>
+                    </div>
                   </div>
 
                   <div className="py-4 space-y-3">

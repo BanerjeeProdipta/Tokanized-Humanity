@@ -1,45 +1,47 @@
+import React from 'react';
 import { Navigate, useRoutes } from 'react-router-dom';
-import Layout from '../components/ui/common/Layout';
-import ApplicationDetails from '../pages/ApplicationDetails';
-import CampaignDetails from '../pages/CampaignDetails';
-import CreateCampaign from '../pages/CreateCampaign';
-import Landing from '../pages/Landing';
-import MembershipApplications from '../pages/MembershipApplications';
-import Profile from '../pages/Profile';
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
 import { getRole } from '../utils';
+
+const LazyLayout = React.lazy(() => import("../components/ui/common/Layout"));
+const LazyApplicationDetails = React.lazy(() => import("../pages/ApplicationDetails"));
+const LazyCampaignDetails = React.lazy(() => import("../pages/CampaignDetails"));
+const LazyCreateCampaign = React.lazy(() => import("../pages/CreateCampaign"));
+const LazyLanding = React.lazy(() => import("../pages/Landing"));
+const LazyMembershipApplications = React.lazy(() => import("../pages/MembershipApplications"));
+const LazyProfile = React.lazy(() => import("../pages/Profile"));
+const LazySignIn = React.lazy(() => import("../pages/SignIn"));
+const LazySignUp = React.lazy(() => import("../pages/SignUp"));
+
 
 function Routes() {
   const withoutLogin = {
     path: '/',
-    element: <Layout />,
+    element: <LazyLayout />,
     children: [
-      { path: '/', element: <Landing /> },
-      { path: '/fund-request/:id', element: <CampaignDetails /> },
-      { path: '/user/:id', element: <Profile /> },
-      { path: '/sign-up', element: <SignUp /> },
-      { path: '/sign-in', element: <SignIn /> },
+      { path: '/', element: <LazyLanding /> },
+      { path: '/fund-request/:id', element: <LazyCampaignDetails /> },
+      { path: '/user/:id', element: <LazyProfile /> },
+      { path: '/sign-up', element: <LazySignUp /> },
+      { path: '/sign-in', element: <LazySignIn /> },
 
     ],
   };
 
   const withLogin = {
     path: '/create',
-    element: getRole() === 'user' ? <Layout /> : <Navigate to="/" />,
+    element: getRole() === 'user' ? <LazyLayout /> : <Navigate to="/" />,
     children: [
-      { path: '/create/campaign', element: <CreateCampaign /> },
+      { path: '/create/campaign', element: <LazyCreateCampaign /> },
 
     ],
   };
 
   const daoRoutes = {
     path: '/applications',
-    element: getRole() === 'dao' ? <Layout /> : <Navigate to="/" />,
+    element: getRole() === 'dao' ? <LazyLayout /> : <Navigate to="/" />,
     children: [
-      { path: '/applications', element: <MembershipApplications /> },
-      { path: '/applications/:id', element: <ApplicationDetails /> },
-
+      { path: '/applications', element: <LazyMembershipApplications /> },
+      { path: '/applications/:id', element: <LazyApplicationDetails /> },
     ],
   };
 

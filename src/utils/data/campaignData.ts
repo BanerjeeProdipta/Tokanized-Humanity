@@ -129,7 +129,7 @@ const campaignData = [
     fundGoal: '1500',
     donationCount: '6',
     createdAt: '2h ago',
-    banner: 'https://images.gofundme.com/z9kkankEZYoHl6aRwk-Ei08HQo0=/720x405/https://d2g8igdw686xgo.cloudfront.net/65122009_1651811751593908_r.png',
+    banner: 'https://amt-live.storage.googleapis.com/upload/img_cache/file-11774-5bf548947a67cf4d476654f466f4c2af.jpeg',
     donations: [
       {
         amount: 10,
@@ -168,7 +168,7 @@ const campaignData = [
     fundGoal: '1500',
     donationCount: '6',
     createdAt: '2h ago',
-    banner: 'https://images.unsplash.com/photo-1507427100689-2bf8574e32d4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+    banner: 'https://www.unicef.org/southafrica/sites/unicef.org.southafrica/files/styles/hero_desktop/public/ZAF-BEC9590.jpg?itok=YNSTOoEJ',
     donations: [
       {
         amount: 10,

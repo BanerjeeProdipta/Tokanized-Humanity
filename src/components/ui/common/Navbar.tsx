@@ -25,10 +25,8 @@ function Navbar() {
 
   return (
     <div
-      className="sticky top-0 z-50 flex justify-between py-2 lg:mx-0"
-      style={{
-        backdropFilter: 'blur(2px)',
-      }}
+      className="container sticky top-0 z-50 flex justify-between py-2 mx-12 text-white bg-gray-900 border-b px-36 lg:mx-0"
+
     >
       <Link className="flex items-center mr-3 space-x-2" to="/">
 
@@ -40,7 +38,7 @@ function Navbar() {
         {address ? (
           <div className="flex items-center space-x-2">
 
-            <p className='truncate truncate-5'>{address}</p>
+            <p className='text-sm'>{address.slice(0, 6)}...{address.slice(address.length - 4, address.length)}</p>
 
             {
               getRole() === 'dao' ? (
@@ -50,7 +48,7 @@ function Navbar() {
                     className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
                     type="button"
                   >
-                    Applications
+                    Dashboard
                   </button>
                 )
               )
@@ -80,13 +78,7 @@ function Navbar() {
           </div>
         ) : (
           <div className="flex items-center">
-            <Link
-              to='/sign-up'
-              className="block px-4 py-2 text-sm transition duration-500 rounded-full text-primary hover:bg-primary hover:text-white"
-              type="button"
-            >
-              Sign Up
-            </Link>
+
 
             <button
               onClick={handleConnect}
