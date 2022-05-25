@@ -53,7 +53,7 @@ function SignUp() {
 
   const onSubmit = handleSubmit(async (data) => {
     console.log(data);
-    localStorage.setItem('pendingMember', JSON.stringify(data));
+    localStorage.setItem('user', JSON.stringify(data));
     navigate('/');
   });
 

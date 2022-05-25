@@ -23,15 +23,11 @@ function HomeFeed() {
                 <div className="text-sm">
                   <Link
                     to={`/user/${campaign.creatorData.id}`}
-                    className="font-bold text-gray-800 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-300"
+                    className="mr-2 font-bold text-gray-800 hover:text-gray-900 dark:text-gray-200 dark:hover:text-gray-300"
                   >
                     {campaign.creatorData.name}
                   </Link>
-                  <span className="mr-1 text-secondary">
-                    &nbsp;
-                    {' '}
-                    {campaign.creatorData.email}
-                  </span>
+
                   <span className="mr-1 text-gray-600">
                     {
                       campaign.createdAt

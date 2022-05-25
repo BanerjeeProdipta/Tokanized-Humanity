@@ -25,6 +25,7 @@
     "react-query": "^3.34.15",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.3",
+    "react-share": "^4.4.0",
     "react-slick": "^0.29.0",
     "react-toastify": "^9.0.1",
     "slick-carousel": "^1.8.1",
