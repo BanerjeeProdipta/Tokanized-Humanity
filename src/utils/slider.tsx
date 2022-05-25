@@ -1,36 +1,3 @@
-function SampleNextArrow(props: any) {
-  const { className, style, onClick } = props;
-  return (
-    <button
-      type="button"
-      className={`${className} bg-primary hover:bg-secondary transition pt-0.5 shrink-0 h-8 -mt-4 mr-2 duration-700 flex justify-center items-center w-8 rounded-full`}
-      style={{
-        ...style,
-        display: 'block',
-        background: '#06b6d4',
-      }}
-      onClick={onClick}
-    />
-  );
-}
-
-function SamplePrevArrow(props: any) {
-  const { className, style, onClick } = props;
-  return (
-    <button
-      type="button"
-      className={`${className} bg-primary  ml-2 hover:bg-secondary hover:scale-105 transition pt-0.5 shrink-0 h-8 -mt-4 duration-700 flex justify-center items-center w-8 rounded-full z-100`}
-      style={{
-        ...style,
-        display: 'block',
-        background: '#06b6d4',
-        zIndex: 10,
-      }}
-      onClick={onClick}
-    />
-  );
-}
-
 const settings = {
   dots: true,
   infinite: true,
@@ -40,8 +7,8 @@ const settings = {
   autoplay: true,
   initialSlide: 0,
   hoverPause: true,
-  nextArrow: <SampleNextArrow />,
-  prevArrow: <SamplePrevArrow />,
+  arrows: false,
+
 
   responsive: [
     {

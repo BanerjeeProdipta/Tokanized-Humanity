@@ -5,23 +5,20 @@ function HomeFeed() {
   return (
     <section className="space-y-8 text-center">
       <span className="text-lg font-bold text-primary">Updates of recent campaigns</span>
-      <h2 className="text-3xl font-bold font-heading">Build and launch without problems</h2>
-      <div className='max-w-4xl text-left'>
-        {campaignData.map((campaign) => (
+      <h2 className="text-3xl font-bold font-heading">Latest projects updates</h2>
+      <div className='grid grid-cols-3 gap-6 text-left'>
+        {campaignData.slice(0, 3).map((campaign) => (
           <div key={campaign.id} className="w-full py-2 mb-4">
             <div className="flex">
               <Link
                 to={`/user/${campaign.creatorData.id}`}
               >
-                <div className="flex-shrink-0">
-                  <img
-                    className="rounded-full w-14 h-14"
-                    src={campaign.creatorData.profilePicture}
-                    alt=""
-                  />
-                </div>
+                <img
+                  className="flex flex-shrink-0 rounded-full w-14 h-14"
+                  src={campaign.creatorData.profilePicture}
+                  alt=""
+                />
               </Link>
-
               <div className="w-full ml-2 rounded-xl">
                 <div className="text-sm">
                   <Link
@@ -41,10 +38,9 @@ function HomeFeed() {
                     }
                   </span>
                 </div>
-
                 <Link to={`/fund-request/${campaign.id}`} className="px-4 py-2 mt-2 rounded-xl">
                   <div className="space-y-2">
-                    <p>
+                    <p className='truncate'>
                       {campaign.description}
                     </p>
                     <img
