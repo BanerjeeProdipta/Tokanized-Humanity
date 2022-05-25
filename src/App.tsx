@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { MainProvider } from './providers/MainProvider';
 import Routes from './routes/Routes';
@@ -8,9 +9,11 @@ function App() {
   return (
     <MainProvider>
       <BrowserRouter>
-        <Routes />
+        <Suspense fallback={<div className='flex items-center justify-center min-h-screen text-2xl text-white bg-gray-900 animate-pulse'>Loading...</div>}>
+          <Routes />
+        </Suspense>
       </BrowserRouter>
-    </MainProvider>
+    </MainProvider >
   );
 }
 
