@@ -9,7 +9,7 @@ function App() {
   return (
     <MainProvider>
       <BrowserRouter>
-        <Suspense fallback={<div className='flex items-center justify-center min-h-screen text-2xl text-white bg-gray-900 animate-pulse'>Loading...</div>}>
+        <Suspense fallback={<div className='flex items-center justify-center min-h-screen text-2xl text-white bg-gray-900'>Loading...</div>}>
           <Routes />
         </Suspense>
       </BrowserRouter>

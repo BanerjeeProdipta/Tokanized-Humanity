@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { BiSend } from 'react-icons/bi';
 import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Modal } from '../components/ui/common/Modal';
 import TextArea from '../components/ui/form-fields/TextArea';
 import donationABI from '../config/abis';
@@ -38,6 +39,16 @@ function CampaignDetails() {
         console.log(fundit)
       });
       setDonated(true)
+      toast.success(`Successfully donated ${donationAmount} celo!`, {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+      });
+
     }
     catch (e) {
       console.log(e);
