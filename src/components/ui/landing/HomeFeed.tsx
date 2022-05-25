@@ -1,14 +1,26 @@
+import { useState } from 'react';
+import { BiLeftArrow, BiRightArrow } from 'react-icons/bi';
 import { Link } from 'react-router-dom';
+import Slider from 'react-slick';
 import campaignData from '../../../utils/data/campaignData';
+import settings from '../../../utils/slider';
 
 function HomeFeed() {
+
+  const [slider, setSlider] = useState<Slider>();
+  const handleNextSlide = () => slider && slider.slickNext();
+  const handlePrevSlide = () => slider && slider.slickPrev();
+
+
   return (
     <section className="space-y-8 text-center">
       <span className="text-lg font-bold text-primary">Updates of recent campaigns</span>
       <h2 className="text-3xl font-bold font-heading">Latest projects updates</h2>
-      <div className='grid grid-cols-3 gap-6 text-left'>
-        {campaignData.slice(0, 3).map((campaign) => (
-          <div key={campaign.id} className="w-full py-2 mb-4">
+      <Slider
+        ref={(r) => r && setSlider(r)}
+        {...settings} className="w-full text-left">
+        {campaignData.map((campaign) => (
+          <div key={campaign.id} className="w-full px-2 py-2 mb-4">
             <div className="flex">
               <Link
                 to={`/user/${campaign.creatorData.id}`}
@@ -67,9 +79,16 @@ function HomeFeed() {
             </div>
           </div>
         ))
-        }
+        }</Slider>
+      <div className='space-x-5 '>
+        <button onClick={handlePrevSlide}>
+          <BiLeftArrow size={20} color="#06b6d4" />
+        </button>
+        <button onClick={handleNextSlide}>
+          <BiRightArrow size={20} color="#06b6d4" />
+        </button>
       </div>
-    </section>
+    </section >
   );
 }
 

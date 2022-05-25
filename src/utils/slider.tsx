@@ -9,7 +9,6 @@ const settings = {
   hoverPause: true,
   arrows: false,
 
-
   responsive: [
     {
       breakpoint: 1024,
