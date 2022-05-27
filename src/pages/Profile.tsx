@@ -1,13 +1,13 @@
 import { BiFile, BiUser } from 'react-icons/bi';
 import { FaQuoteLeft } from 'react-icons/fa';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import campaignCreatorData from '../utils/data/campaignCreatorData';
 import campaignData from '../utils/data/campaignData';
 
 function Profile() {
   const params = useParams();
+  const navigate = useNavigate();
 
-  console.log(params.id);
 
   function getSuccessfulProject() {
     // eslint-disable-next-line no-plusplus
@@ -233,7 +233,16 @@ function Profile() {
 
                     </ul>
                   </div>
+                  <div className="flex justify-end pt-6 space-x-8">
+                    <button
+                      type="button"
+                      onClick={() => navigate('/applications')}
+                      className="block w-full max-w-xs py-2 text-white transition rounded-full bg-primary hover:bg-secondary"
+                    >
+                      Delete
+                    </button>
 
+                  </div>
                 </div>
               </div>
             </div>
