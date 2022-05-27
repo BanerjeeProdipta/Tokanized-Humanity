@@ -28,7 +28,7 @@ function HomeFeed() {
               >
                 <img
                   className="flex flex-shrink-0 w-10 h-10 rounded-full"
-                  src={campaign.creatorData.profilePicture}
+                  src={campaign.creatorData.image}
                   alt=""
                 />
                 <p className='whitespace-nowrap'>  {campaign.creatorData.name}</p>
@@ -58,7 +58,7 @@ function HomeFeed() {
                         <div className="flex flex-shrink-0">
                           <img
                             className="w-8 h-8 mr-2 rounded-full"
-                            src={comment.createdBy.profilePicture}
+                            src={comment.createdBy.image}
                             alt=""
                           />
                         </div>

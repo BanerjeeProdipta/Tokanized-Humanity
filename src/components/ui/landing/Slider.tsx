@@ -8,13 +8,12 @@ import campaignData from '../../../utils/data/campaignData';
 import settings from '../../../utils/slider';
 
 function SliderComponent() {
-
   const [slider, setSlider] = useState<Slider>();
   const handleNextSlide = () => slider && slider.slickNext();
   const handlePrevSlide = () => slider && slider.slickPrev();
 
   return (
-    <section className="space-y-8 text-center ">
+    <section className="space-y-8 text-center">
       <span className="text-lg font-bold text-primary">Campaigns in your community</span>
       <h2 className="text-3xl font-bold font-heading">Donate to help.</h2>
       <Slider
