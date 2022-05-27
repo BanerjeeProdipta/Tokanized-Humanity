@@ -12,8 +12,8 @@ function App() {
   return (
     <MainProvider>
       <BrowserRouter>
-        <Suspense fallback={<div className='flex items-center justify-center min-h-screen text-2xl text-white bg-gray-900'>
-          <div className='animate-pulse text-primary'>Loading...</div>
+        <Suspense fallback={<div className='flex items-center justify-center min-h-screen text-6xl text-white bg-gray-900'>
+          <div className='animate-pulse text-primary'>Tokenized Humanity</div>
         </div>}>
           <Navbar />
           <Routes />
