@@ -188,7 +188,7 @@ function CampaignDetails() {
                       (donation, index) => (
                         <Link to={`/user/${donation.donator.id}`} key={index} className="flex items-center space-x-2">
                           <img
-                            src={donation.donator.profilePicture}
+                            src={donation.donator.image}
                             alt=""
                             className="flex flex-shrink-0 w-10 h-10 rounded-full"
                           />
@@ -234,7 +234,7 @@ function CampaignDetails() {
                       <Link to="/user/1" className="flex-shrink-0">
                         <img
                           className="inline-block w-12 h-12 mr-4 rounded-full"
-                          src={campaignData[parseInt(params.id) - 1].creatorData.profilePicture}
+                          src={campaignData[parseInt(params.id) - 1].creatorData.image}
                           alt=""
                         />
                       </Link>
@@ -280,7 +280,7 @@ function CampaignDetails() {
                   (comment) => (
                     <div key={comment.id} className="flex items-center space-x-2">
                       <img
-                        src={comment.createdBy.profilePicture}
+                        src={comment.createdBy.image}
                         alt=""
                         className="flex flex-shrink-0 w-10 h-10 rounded-full"
                       />
