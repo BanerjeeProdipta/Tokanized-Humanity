@@ -61,7 +61,7 @@ function Profile() {
                   <div className="overflow-hidden image">
                     <img
                       className="w-full h-auto max-w-xs mx-auto rounded-xl"
-                      src={campaignCreatorData[parseInt(params.id) - 1].profilePicture}
+                      src={campaignCreatorData[parseInt(params.id) - 1].image}
                       alt=""
                     />
                   </div>
@@ -136,7 +136,7 @@ function Profile() {
 
                             <img
                               className="w-16 h-16 mx-auto rounded-full"
-                              src={creator.profilePicture}
+                              src={creator.image}
                               alt=""
                             />
                           </Link>

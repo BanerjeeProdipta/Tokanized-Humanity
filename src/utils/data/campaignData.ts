@@ -35,7 +35,7 @@ const campaignData = [
       {
         id: 2,
         comment: 'Good job',
-        createdBy: campaignCreatorData[0],
+        createdBy: campaignCreatorData[1],
         createdDate: '01/01/2020',
       },
     ],
@@ -68,13 +68,13 @@ const campaignData = [
       {
         id: 3,
         comment: 'Great',
-        createdBy: campaignCreatorData[0],
+        createdBy: campaignCreatorData[2],
         createdDate: '01/01/2020',
       },
       {
         id: 4,
         comment: 'We are with you',
-        createdBy: campaignCreatorData[0],
+        createdBy: campaignCreatorData[3],
         createdDate: '01/01/2020',
       },
     ],
@@ -107,13 +107,13 @@ const campaignData = [
       {
         id: 5,
         comment: 'Go ahead!',
-        createdBy: campaignCreatorData[0],
+        createdBy: campaignCreatorData[1],
         createdDate: '01/01/2020',
       },
       {
         id: 6,
         comment: 'Excellent work',
-        createdBy: campaignCreatorData[0],
+        createdBy: campaignCreatorData[2],
         createdDate: '01/01/2020',
       },
     ],
@@ -146,13 +146,13 @@ const campaignData = [
       {
         id: 7,
         comment: 'Bravo',
-        createdBy: campaignCreatorData[0],
+        createdBy: campaignCreatorData[3],
         createdDate: '01/01/2020',
       },
       {
         id: 8,
         comment: 'I wish this becomes successful',
-        createdBy: campaignCreatorData[0],
+        createdBy: campaignCreatorData[1],
         createdDate: '01/01/2020',
       },
     ],
@@ -185,13 +185,13 @@ const campaignData = [
       {
         id: 7,
         comment: 'Bravo',
-        createdBy: campaignCreatorData[0],
+        createdBy: campaignCreatorData[2],
         createdDate: '01/01/2020',
       },
       {
         id: 8,
         comment: 'I wish this becomes successful',
-        createdBy: campaignCreatorData[0],
+        createdBy: campaignCreatorData[3],
         createdDate: '01/01/2020',
       },
     ],

@@ -37,6 +37,14 @@ function Navbar() {
 
         {address ? (
           <div className="flex items-center space-x-2">
+            {
+              getRole() === 'dao' &&
+              <Link to="/my-profile">
+                <img
+                  className='rounded-full w-9 h-9'
+                  src="https://www.shareicon.net/data/128x128/2015/09/20/104335_avatar_512x512.png" alt="" />
+              </Link>
+            }
 
             <p className='text-sm'>{address.slice(0, 6)}...{address.slice(address.length - 4, address.length)}</p>
 
