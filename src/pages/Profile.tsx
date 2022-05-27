@@ -15,34 +15,39 @@ function Profile() {
       if (campaignData[i].creatorData.id === (3)) {
         return (
           <li>
-            <div className="p-2 transition duration-700 border-2 hover:bg-gray-500/5 hover:border-primary group rounded-xl">
+            <div
+              className="overflow-hidden transition duration-700 border-2 hover:bg-gray-500/5 hover:border-primary group rounded-xl" >
               <Link
                 className="space-y-1 "
                 to={`/fund-request/${campaignData[i].id}`}
               >
                 <img
-                  className="object-fill w-full h-48 transition duration-700 group-hover:scale-105 rounded-xl"
+                  className="w-full h-48 transition duration-700 group-hover:scale-105 rounded-xl"
                   src={campaignData[i].banner}
                   alt=""
                 />
-                <h2 className="pt-2">{campaignData[i].name}</h2>
-                <p className="text-sm text-gray-600 truncate">
-                  {campaignData[i].description}
-                </p>
-                <div className="text-xs font-bold">
-                  <span className="text-primary">
-                    {campaignData[i].fundRaised}
-                    {' '}
-                    raised
-                  </span>
-                  ·
-                  {campaignData[i].donationCount}
-                  {' '}
-                  donations
+                <div className='p-2 space-y-2'>
+                  <h2 className="pt-2">{campaignData[i].name}</h2>
+                  <p className="text-sm text-gray-600 truncate">
+                    {campaignData[i].description}
+                  </p>
+                  <div className="space-x-2 text-xs font-bold">
+                    <span className="text-primary">
+                      {campaignData[i].fundRaised}
+                      {' '}
+                      raised
+                    </span>
+                    <span>
+                      ·
+                    </span>
+                    <span>    {campaignData[i].donationCount}
+                      {' '}
+                      donations</span>
+                  </div>
                 </div>
               </Link>
             </div>
-          </li>
+          </li >
         );
       }
     }
