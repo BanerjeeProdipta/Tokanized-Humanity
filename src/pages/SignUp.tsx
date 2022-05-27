@@ -11,7 +11,7 @@ interface ISignUp {
   contact: string,
   profession: string,
   gender: string,
-  profilePicture: File | undefined,
+  image: File | undefined,
   passportImage: File | undefined,
   nIDImage: File | undefined,
   drivingLicenseImage: File | undefined,
@@ -25,10 +25,9 @@ const validationSchema = yup.object().shape({
   contact: yup.string().required('Contact Number is required'),
   profession: yup.string().required('Profession is required'),
   gender: yup.string().required('Gender is required'),
-  profilePicture: yup.mixed().required('Profile picture is required'),
+  image: yup.mixed().required('Profile picture is required'),
   passportImage: yup.mixed().required('Passport image is required'),
   nIDImage: yup.mixed().required('NID image is required'),
-  drivingLicenseImage: yup.mixed().required('Driving license image is required'),
 
 });
 
@@ -45,7 +44,7 @@ function SignUp() {
     mode: 'onBlur',
   });
 
-  const profilePicture = watch('profilePicture');
+  const image = watch('image');
   const passportImage = watch('passportImage');
   const nIDImage = watch('nIDImage');
   const drivingLicenseImage = watch('drivingLicenseImage');
@@ -175,17 +174,17 @@ function SignUp() {
           }
         </div>
         <div className="space-y-1">
-          <p className={`font-medium ${errors.profilePicture ? 'text-red-500' : 'text-gray-500'}`}>
+          <p className={`font-medium ${errors.image ? 'text-red-500' : 'text-gray-500'}`}>
             Profile Image
           </p>
           <div
             className="flex flex-wrap items-center"
           >
             {
-              profilePicture && (
+              image && (
                 <img
                   className="object-cover w-20 h-20 mr-4 border rounded-full"
-                  src={URL.createObjectURL(profilePicture)}
+                  src={URL.createObjectURL(image)}
                   alt="user avatar"
                 />
               )
@@ -202,7 +201,7 @@ function SignUp() {
                   id="browse-picture-file-button"
                   type="file"
                   onChange={(e) => {
-                    e.target.files && setValue('profilePicture', e.target.files[0]);
+                    e.target.files && setValue('image', e.target.files[0]);
                   }}
                 />
                 <div className="px-3 py-2 font-medium text-center text-white rounded-lg cursor-pointer bg-primary">
@@ -210,13 +209,13 @@ function SignUp() {
                 </div>
               </label>
               {
-                profilePicture
+                image
                 && (
                   <button
                     type="button"
                     onClick={
                       () => setValue(
-                        'profilePicture',
+                        'image',
                         undefined,
                       )
 
@@ -231,7 +230,7 @@ function SignUp() {
 
           </div>
           {
-            errors.profilePicture && (<p className="text-xs text-red-500">{errors.profilePicture.message}</p>)
+            errors.image && (<p className="text-xs text-red-500">{errors.image.message}</p>)
           }
         </div>
 
