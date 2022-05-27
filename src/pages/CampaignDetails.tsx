@@ -15,7 +15,6 @@ import { donationContractAddress } from '../config/contracts';
 import { isOwner } from '../utils';
 import campaignData from '../utils/data/campaignData';
 
-
 function CampaignDetails() {
   const params = useParams();
   const [donated, setDonated] = useState(false);
@@ -113,7 +112,7 @@ function CampaignDetails() {
                           >
                             {donated ? 'Donated' : 'Donate'}
                           </Menu.Button>
-                          <Menu.Items className="absolute rounded-xl left-3 w-96 bg-gray-50 dark:bg-gray-800">
+                          <Menu.Items className="absolute z-50 rounded-xl left-3 w-96 bg-gray-50 dark:bg-gray-800">
                             <Menu.Item>
                               {(active: any) => (
                                 <button

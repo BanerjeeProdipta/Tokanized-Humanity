@@ -1,13 +1,13 @@
 import { BiFile, BiUser } from 'react-icons/bi';
 import { FaQuoteLeft } from 'react-icons/fa';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import campaignCreatorData from '../utils/data/campaignCreatorData';
 import campaignData from '../utils/data/campaignData';
 
 function Profile() {
   const params = useParams();
+  const navigate = useNavigate();
 
-  console.log(params.id);
 
   function getSuccessfulProject() {
     // eslint-disable-next-line no-plusplus
@@ -15,34 +15,39 @@ function Profile() {
       if (campaignData[i].creatorData.id === (3)) {
         return (
           <li>
-            <div className="p-2 transition duration-700 border-2 hover:bg-gray-500/5 hover:border-primary group rounded-xl">
+            <div
+              className="overflow-hidden transition duration-700 border-2 hover:bg-gray-500/5 hover:border-primary group rounded-xl" >
               <Link
                 className="space-y-1 "
                 to={`/fund-request/${campaignData[i].id}`}
               >
                 <img
-                  className="object-fill w-full h-48 transition duration-700 group-hover:scale-105 rounded-xl"
+                  className="w-full h-48 transition duration-700 group-hover:scale-105 rounded-xl"
                   src={campaignData[i].banner}
                   alt=""
                 />
-                <h2 className="pt-2">{campaignData[i].name}</h2>
-                <p className="text-sm text-gray-600 truncate">
-                  {campaignData[i].description}
-                </p>
-                <div className="text-xs font-bold">
-                  <span className="text-primary">
-                    {campaignData[i].fundRaised}
-                    {' '}
-                    raised
-                  </span>
-                  ·
-                  {campaignData[i].donationCount}
-                  {' '}
-                  donations
+                <div className='p-2 space-y-2'>
+                  <h2 className="pt-2">{campaignData[i].name}</h2>
+                  <p className="text-sm text-gray-600 truncate">
+                    {campaignData[i].description}
+                  </p>
+                  <div className="space-x-2 text-xs font-bold">
+                    <span className="text-primary">
+                      {campaignData[i].fundRaised}
+                      {' '}
+                      raised
+                    </span>
+                    <span>
+                      ·
+                    </span>
+                    <span>    {campaignData[i].donationCount}
+                      {' '}
+                      donations</span>
+                  </div>
                 </div>
               </Link>
             </div>
-          </li>
+          </li >
         );
       }
     }
@@ -233,7 +238,16 @@ function Profile() {
 
                     </ul>
                   </div>
+                  <div className="flex justify-end pt-6 space-x-8">
+                    <button
+                      type="button"
+                      onClick={() => navigate('/applications')}
+                      className="block w-full max-w-xs py-2 text-white transition rounded-full bg-primary hover:bg-secondary"
+                    >
+                      Delete
+                    </button>
 
+                  </div>
                 </div>
               </div>
             </div>

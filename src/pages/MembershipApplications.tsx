@@ -13,7 +13,7 @@ function MembershipApplications() {
   const { address } = useContractKit();
 
 
-  const populateSlider = (data: any) => {
+  const populateSlider = (data: any, status: string) => {
     const [slider, setSlider] = useState<Slider>();
     const handleNextSlide = () => slider && slider.slickNext();
     const handlePrevSlide = () => slider && slider.slickPrev();
@@ -36,7 +36,7 @@ function MembershipApplications() {
                 <span className="text-sm text-gray-500 dark:text-gray-400">{v.profession}</span>
                 <div className="flex mt-4 space-x-3 lg:mt-6">
                   <Link
-                    to={`/applications/${v.id}`}
+                    to={`${status === 'pending' ? '/applications' : '/user'}/${v.id}`}
                     className="px-4 py-1 text-white transition duration-500 rounded-full whitespace-nowrap bg-primary hover:bg-secondary"
                   >
                     View Application
@@ -81,13 +81,13 @@ function MembershipApplications() {
       <div>
         <h2 className="py-2 text-2xl font-bold">Pending</h2>
         {
-          populateSlider(applicationData)
+          populateSlider(applicationData, 'pending')
         }
       </div>
       <div>
         <h2 className="py-2 text-2xl font-bold">Approved</h2>
         {
-          populateSlider(campaignCreatorData)}
+          populateSlider(campaignCreatorData, 'approved')}
       </div>
     </div>
   );

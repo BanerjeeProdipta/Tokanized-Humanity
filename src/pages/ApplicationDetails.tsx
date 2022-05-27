@@ -161,7 +161,6 @@ function ApplicationDetails() {
                         {
                           applicationData[parseInt(params.id) - 1].dob
                         }
-
                       </div>
                     </div>
                   </div>
