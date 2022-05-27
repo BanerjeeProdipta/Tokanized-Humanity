@@ -15,7 +15,6 @@ import { donationContractAddress } from '../config/contracts';
 import { isOwner } from '../utils';
 import campaignData from '../utils/data/campaignData';
 
-
 function CampaignDetails() {
   const params = useParams();
   const [donated, setDonated] = useState(false);
