@@ -3,34 +3,28 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import donationABI from '../../../config/abis';
 import { donationContractAddress } from '../../../config/contracts';
-import { getRole, isAuthenticated } from '../../../utils';
+import { getRole } from '../../../utils';
 
 function Navbar() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  const { connect, address, destroy } = useContractKit();
+  const { performActions, } = useContractKit();
 
   useEffect(() => {
-    isAuthenticated();
-    setIsLoggedIn(isAuthenticated());
     getRole();
   }, [isLoggedIn]);
-  const { connect, address, destroy } = useContractKit();
-
-  const { performActions, } = useContractKit();
 
   const handleConnect = async () => {
     try {
       await connect();
       await performActions(async (kit) => {
         const donationContract = new kit.web3.eth.Contract(donationABI, donationContractAddress);
-
         const isDao = await donationContract.methods.checkIfDAO(kit.defaultAccount).call()
-
         localStorage.setItem('role', isDao ? 'dao' : 'user');
-
         console.log(isDao)
       });
+
     } catch (e) {
       console.log({ e });
     }
@@ -53,7 +47,7 @@ function Navbar() {
           <div className="flex items-center space-x-2">
             {
               getRole() === 'dao' &&
-              <Link to="/my-profile">
+              <Link to="/applications">
                 <img
                   className='rounded-full w-9 h-9'
                   src="https://www.shareicon.net/data/128x128/2015/09/20/104335_avatar_512x512.png" alt="" />
