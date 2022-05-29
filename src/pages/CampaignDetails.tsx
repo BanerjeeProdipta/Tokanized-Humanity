@@ -299,14 +299,14 @@ function CampaignDetails() {
               }
               {
                 isOwner(parseInt(params.id) - 1) && (
-                  <div className="relative">
+                  <div className="relative max-w-3xl">
                     <TextArea
                       className="max-w-3xl"
                       placeholder="Post updates..."
                     />
                     <button
                       type="button"
-                      className="absolute p-1 rounded-full bottom-4 right-40 text-primary hover:bg-primary hover:text-white"
+                      className="absolute p-1 rounded-full bottom-4 right-2 text-primary hover:bg-primary hover:text-white"
                     >
                       <BiSend
                         className="w-4 h-4"
