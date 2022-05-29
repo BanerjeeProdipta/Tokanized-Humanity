@@ -181,17 +181,17 @@ function ApplicationDetails() {
                     <div>
 
                       <p className="font-medium text-gray-500">ID:</p>
-                      <img src="/document/nid.jpg" alt="" className="p-2 mt-2 border h-52 w-96" />
+                      <img src="/document/nid.jpg" alt="" className="p-2 mt-2 border h-52 w-96 blur-sm" />
                     </div>
 
                     <div>
                       <p className="font-medium text-gray-500">Passport:</p>
-                      <img src="/document/passport.jpg" alt="" className="p-2 mt-2 border h-52 w-96" />
+                      <img src="/document/passport.jpg" alt="" className="p-2 mt-2 border h-52 w-96 blur-sm" />
                     </div>
 
                     <div>
                       <p className="font-medium text-gray-500">Driving License:</p>
-                      <img src="/document/driving-license.jpg" alt="" className="p-2 mt-2 border h-52 w-96" />
+                      <img src="/document/driving-license.jpg" alt="" className="p-2 mt-2 border h-52 w-96 blur-sm" />
                     </div>
 
                   </div>
