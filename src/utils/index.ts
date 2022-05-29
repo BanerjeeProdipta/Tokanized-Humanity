@@ -1,4 +1,3 @@
-export const isAuthenticated = () => !!localStorage.getItem('user');
 
 export function getRole() {
   if ( localStorage.getItem('role')) {
@@ -10,7 +9,7 @@ export function getRole() {
 
 export function isOwner(id:number) {
   // number 4 is with edit option
-  if (isAuthenticated() && id === 3 && getRole() === 'user') {
+  if (id === 3 && getRole() === 'user') {
     return true;
   }
   return false;
