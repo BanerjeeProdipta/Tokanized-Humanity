@@ -26,7 +26,7 @@ function CampaignDetails() {
     try {
       await performActions(async (kit) => {
         const donationContract = new kit.web3.eth.Contract(donationABI, donationContractAddress);
-        console.log(donationContract)
+
         const sendConf = {
           from: kit.defaultAccount,
           gasLimit: '10000000',
