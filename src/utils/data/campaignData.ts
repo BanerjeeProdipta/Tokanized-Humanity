@@ -87,7 +87,7 @@ const campaignData = [
     endDate: '01/04/2022',
     creatorData: campaignCreatorData[2],
     fundRaised: '1100',
-    fundGoal: '1000',
+    fundGoal: '1900',
     donationCount: '6',
     createdAt: '2h ago',
     banner: 'https://images.gofundme.com/PmoZjhns9_bRHGLbmG9E0RV_fd8=/720x405/https://d2g8igdw686xgo.cloudfront.net/64962161_1651122877833917_r.jpeg',

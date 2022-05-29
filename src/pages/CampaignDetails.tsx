@@ -89,12 +89,18 @@ function CampaignDetails() {
                         {' '}
                         goal
                       </span>
+
                     </h2>
                     <p className="py-2 text-sm text-gray-500/80">
                       {campaignData[parseInt(params.id) - 1].donationCount}
                       {' '}
                       donations
                     </p>
+                    <div className='relative w-full h-2 bg-gray-600 rounded-full'>
+                      <span className='absolute h-2 rounded-full bg-primary'
+                        style={{ width: `${(parseInt(campaignData[parseInt(params.id) - 1].fundRaised) / parseInt(campaignData[parseInt(params.id) - 1].fundGoal)) * 100}%` }}
+                      />
+                    </div>
                   </div>
 
                   <div className="relative w-full pt-4 space-y-4">
